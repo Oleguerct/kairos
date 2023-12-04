@@ -8,6 +8,7 @@ use App\Entity\Condition\WeekDayCondition;
 use App\Entity\Contract;
 use App\Entity\Condition\MaxTemperatureCondition;
 use App\Entity\Condition\MinTemperatureCondition;
+use App\Entity\User;
 use App\Factory\WeatherForecastFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -55,6 +56,13 @@ class AppFixtures extends Fixture
                     ];
             }
         );
+
+        $user = new User();
+        $user->setEmail('fake@mail.com');
+        $user->setPassword('$2y$13$.HZ3/.6Ws6B.YemwU3p2NOpT4IgjMupTamKXDstU28QGsQBQ8W4Ve');
+        $manager->persist($user);
+
+        $manager->flush();
 
 
     }
