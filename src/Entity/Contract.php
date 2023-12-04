@@ -32,6 +32,10 @@ class Contract
     #[ORM\OneToMany(mappedBy: 'contract', targetEntity: Opportunity::class, orphanRemoval: true)]
     private Collection $opportunities;
 
+    #[ORM\ManyToOne(inversedBy: 'contracts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $owner = null;
+
     public function __construct()
     {
         $this->condition = new ArrayCollection();
@@ -156,5 +160,17 @@ class Contract
 
         return $conditions;
 
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): static
+    {
+        $this->owner = $owner;
+
+        return $this;
     }
 }

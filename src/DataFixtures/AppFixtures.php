@@ -33,8 +33,14 @@ class AppFixtures extends Fixture
         $weekDayCriterion = new WeekDayCondition();
         $weekDayCriterion->setWeekDay(1);
 
+        $user = new User();
+        $user->setEmail('fake@mail.com');
+        $user->setPassword('$2y$13$.HZ3/.6Ws6B.YemwU3p2NOpT4IgjMupTamKXDstU28QGsQBQ8W4Ve');
+        $manager->persist($user);
+
         $criteriaPack = new Contract();
         $criteriaPack->setDays(3);
+        $criteriaPack->setOwner($user);
 //        $criterionGroup->addCriterion($maxTCriterion);
 //        $criterionGroup->addCriterion($minTCriterion);
 //        $criterionGroup->addCriterion($cityCriterion);
@@ -57,10 +63,7 @@ class AppFixtures extends Fixture
             }
         );
 
-        $user = new User();
-        $user->setEmail('fake@mail.com');
-        $user->setPassword('$2y$13$.HZ3/.6Ws6B.YemwU3p2NOpT4IgjMupTamKXDstU28QGsQBQ8W4Ve');
-        $manager->persist($user);
+
 
         $manager->flush();
 

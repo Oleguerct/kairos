@@ -20,28 +20,28 @@ class TestController extends AbstractController
     public function main(EntityManagerInterface $entityManager, MatchingDateRangeFinder $dateRangeFinder, OpportunityGenerator $opportunityGenerator ):Response
     {
 
-//        $criteriaRepo = $entityManager->getRepository(CriteriaPack::class);
-//        $criteriaPack = $criteriaRepo->findOneBy([]);
+        $contractRepo = $entityManager->getRepository(Contract::class);
+        $contract = $contractRepo->findOneBy([]);
 
-        $weekDayCondition = new WeekDayCondition();
-        $weekDayCondition->setWeekDay(1);
-
-        $maxTempCondition = new MaxTemperatureCondition();
-        $maxTempCondition->setMaxTemperature(33);
-
-        $dateRangeCondition = new DateRangeCondition();
-        $dateRangeCondition->setMinDate(new \DateTime('2023-12-01'));
-        $dateRangeCondition->setMaxDate(new \DateTime('2023-12-14'));
-
-        $conditions = [
-            //$maxTempCondition,
-            $weekDayCondition,
-            $dateRangeCondition
-        ];
-
-        $contract = new Contract();
-        $contract->addConditions($conditions);
-        $contract->setDays(3);
+//        $weekDayCondition = new WeekDayCondition();
+//        $weekDayCondition->setWeekDay(1);
+//
+//        $maxTempCondition = new MaxTemperatureCondition();
+//        $maxTempCondition->setMaxTemperature(33);
+//
+//        $dateRangeCondition = new DateRangeCondition();
+//        $dateRangeCondition->setMinDate(new \DateTime('2023-12-01'));
+//        $dateRangeCondition->setMaxDate(new \DateTime('2023-12-14'));
+//
+//        $conditions = [
+//            //$maxTempCondition,
+//            $weekDayCondition,
+//            $dateRangeCondition
+//        ];
+//
+//        $contract = new Contract();
+//        $contract->addConditions($conditions);
+//        $contract->setDays(3);
 
 
         $opportunities = $opportunityGenerator->getOpportunities($contract);
