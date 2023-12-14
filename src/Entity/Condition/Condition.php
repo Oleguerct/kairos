@@ -2,14 +2,30 @@
 
 namespace App\Entity\Condition;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Contract;
-use App\Repository\CriterionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\Serializer\Annotation\DiscriminatorMap;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity()]
-#[InheritanceType('JOINED')]
+#[InheritanceType('SINGLE_TABLE')]
+#[DiscriminatorColumn(name: 'condition_type', type: 'string')]
+#[DiscriminatorMap(typeProperty: '@type', mapping: [
+    'CityCondition' => CityCondition::class,
+    'DateCondition' => DateCondition::class,
+    'DateRangeCondition' => DateRangeCondition::class,
+    'MaxTemperatureCondition' => MaxTemperatureCondition::class,
+    'MinTemperatureCondition' => MinTemperatureCondition::class,
+    'WeekDayCondition' => WeekDayCondition::class
+])]
+#[ApiResource(
+    normalizationContext: ['groups' => ['condition:read']],
+    denormalizationContext: ['groups' => ['condition:write']],
+)]
 abstract class Condition
 {
 
@@ -23,10 +39,13 @@ abstract class Condition
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'condition')]
+    #[Groups(['contract:write'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Contract $contract = null;
 
     #[ORM\Column(length: 15)]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['contract:read'])]
     protected ?string $appliesTo = null;
 
     public function getId(): ?int

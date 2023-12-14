@@ -2,18 +2,26 @@
 
 namespace App\Entity\Condition;
 
+use ApiPlatform\Metadata\ApiResource;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity()]
+#[ApiResource(
+    normalizationContext: ['groups' => ['condition:read']],
+    denormalizationContext: ['groups' => ['condition:write']],
+)]
 class DateRangeCondition extends Condition
 {
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['contract:read', 'contract:write'])]
     private ?\DateTimeInterface $minDate = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['contract:read', 'contract:write'])]
     private ?\DateTimeInterface $maxDate = null;
 
     public function __construct()

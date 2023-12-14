@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Condition\Condition;
 use App\Repository\ContractRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,8 +10,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ContractRepository::class)]
+#[ApiResource(
+    normalizationContext: ['groups' => ['contract:read']],
+    denormalizationContext: ['groups' => ['contract:write']],
+)]
 class Contract
 {
     #[ORM\Id]
@@ -24,16 +30,22 @@ class Contract
         cascade: ['persist', 'remove'],
         orphanRemoval: true
     )]
+    #[Groups(['contract:read', 'contract:write'])]
     private Collection $condition;
 
     #[ORM\Column]
+    #[Groups(['contract:read', 'contract:write'])]
     private ?int $days = 1;
 
     #[ORM\OneToMany(mappedBy: 'contract', targetEntity: Opportunity::class, orphanRemoval: true)]
     private Collection $opportunities;
 
-    #[ORM\ManyToOne(inversedBy: 'contracts')]
+    #[ORM\ManyToOne(
+        cascade: ['persist', 'remove'],
+        inversedBy: 'contracts'
+    )]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['contract:read', 'contract:write'])]
     private ?User $owner = null;
 
     public function __construct()

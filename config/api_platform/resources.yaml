@@ -1,8 +1,9 @@
-resources:
-  App\Entity\Contract: ~
-  App\Entity\Condition\CityCondition: ~
-  App\Entity\Condition\DateCondition: ~
-  App\Entity\Condition\DateRangeCondition: ~
-  App\Entity\Condition\MaxTemperatureCondition: ~
-  App\Entity\Condition\MinTemperatureCondition: ~
-  App\Entity\Condition\WeekDayCondition: ~
+#resources:
+#  App\Entity\Contract: ~
+#  App\Entity\Condition\CityCondition: ~
+#  App\Entity\Condition\DateCondition: ~
+#  App\Entity\Condition\DateRangeCondition: ~
+#  App\Entity\Condition\MaxTemperatureCondition: ~
+#  App\Entity\Condition\MinTemperatureCondition: ~
+#  App\Entity\Condition\WeekDayCondition: ~
+#  App\Entity\User: ~

@@ -43,7 +43,7 @@ class AppFixtures extends Fixture
         $criteriaPack->setOwner($user);
 //        $criterionGroup->addCriterion($maxTCriterion);
 //        $criterionGroup->addCriterion($minTCriterion);
-//        $criterionGroup->addCriterion($cityCriterion);
+        $criteriaPack->addCondition($cityCriterion);
 //        $criterionGroup->addCriterion($dateCriterion);
         //$criteriaPack->addCriterion($weekDayCriterion);
 

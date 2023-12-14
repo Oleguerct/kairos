@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231204093147 extends AbstractMigration
+final class Version20231206173005 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,13 +20,13 @@ final class Version20231204093147 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE condition RENAME COLUMN contact_type TO applies_to');
+        $this->addSql('ALTER TABLE condition RENAME COLUMN dtype TO discr');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('ALTER TABLE condition RENAME COLUMN applies_to TO contact_type');
+        $this->addSql('ALTER TABLE condition RENAME COLUMN discr TO dtype');
     }
 }
