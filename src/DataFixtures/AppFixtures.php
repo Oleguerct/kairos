@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\ApiToken;
 use App\Entity\Condition\CityCondition;
 use App\Entity\Condition\DateCondition;
 use App\Entity\Condition\WeekDayCondition;
@@ -33,10 +34,15 @@ class AppFixtures extends Fixture
         $weekDayCriterion = new WeekDayCondition();
         $weekDayCriterion->setWeekDay(1);
 
+        $apiToken = new ApiToken();
+        $manager->persist($apiToken);
+
         $user = new User();
         $user->setEmail('fake@mail.com');
         $user->setPassword('$2y$13$.HZ3/.6Ws6B.YemwU3p2NOpT4IgjMupTamKXDstU28QGsQBQ8W4Ve');
+        $user->addApiToken($apiToken);
         $manager->persist($user);
+
 
         $criteriaPack = new Contract();
         $criteriaPack->setDays(3);
