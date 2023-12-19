@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231218115611 extends AbstractMigration
+final class Version20231219104433 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -26,10 +26,9 @@ final class Version20231218115611 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE opportunity_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE "user_id_seq" INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE weather_forecast_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE TABLE api_token (id INT NOT NULL, owned_by_id INT DEFAULT NULL, expires_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, token VARCHAR(68) NOT NULL, scopes TEXT NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE api_token (id INT NOT NULL, owned_by_id INT DEFAULT NULL, expires_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, token VARCHAR(68) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_7BA2F5EB5E70BCD7 ON api_token (owned_by_id)');
         $this->addSql('COMMENT ON COLUMN api_token.expires_at IS \'(DC2Type:datetime_immutable)\'');
-        $this->addSql('COMMENT ON COLUMN api_token.scopes IS \'(DC2Type:array)\'');
         $this->addSql('CREATE TABLE condition (id INT NOT NULL, contract_id INT NOT NULL, applies_to VARCHAR(15) NOT NULL, condition_type VARCHAR(255) NOT NULL, week_day INT DEFAULT NULL, min_temperature INT DEFAULT NULL, city VARCHAR(100) DEFAULT NULL, date DATE DEFAULT NULL, min_date DATE DEFAULT NULL, max_date DATE DEFAULT NULL, max_temperature INT DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_BDD688432576E0FD ON condition (contract_id)');
         $this->addSql('CREATE TABLE contract (id INT NOT NULL, owner_id INT NOT NULL, days INT NOT NULL, PRIMARY KEY(id))');

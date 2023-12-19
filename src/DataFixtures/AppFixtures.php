@@ -43,6 +43,11 @@ class AppFixtures extends Fixture
         $user->addApiToken($apiToken);
         $manager->persist($user);
 
+        $user2 = new User();
+        $user2->setEmail('fake2@mail.com');
+        $user2->setPassword('$2y$13$.HZ3/.6Ws6B.YemwU3p2NOpT4IgjMupTamKXDstU28QGsQBQ8W4Ve');
+        $manager->persist($user2);
+
 
         $criteriaPack = new Contract();
         $criteriaPack->setDays(3);
