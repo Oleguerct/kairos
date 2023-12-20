@@ -5,6 +5,7 @@ namespace App\Security;
 
 
 use App\Repository\ApiTokenRepository;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
@@ -19,12 +20,15 @@ class ApiTokenHandler implements AccessTokenHandlerInterface
      * ApiTokenHandler constructor.
      * @param ApiTokenRepository $apiTokenRepository
      */
-    public function __construct(private ApiTokenRepository $apiTokenRepository)
+    public function __construct(
+        private ApiTokenRepository $apiTokenRepository,
+    )
     {
     }
 
-    public function getUserBadgeFrom(#[\SensitiveParameter] string $accessToken): UserBadge
+    public function getUserBadgeFrom(string $accessToken): UserBadge
     {
+
         $token = $this->apiTokenRepository->findOneBy(['token' => $accessToken]);
 
         if (!$token) {

@@ -9,6 +9,7 @@ use App\Entity\Condition\WeekDayCondition;
 use App\Entity\Contract;
 use App\Entity\Condition\MaxTemperatureCondition;
 use App\Entity\Condition\MinTemperatureCondition;
+use App\Entity\Simple;
 use App\Entity\User;
 use App\Factory\WeatherForecastFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -27,6 +28,9 @@ class AppFixtures extends Fixture
 
         $cityCriterion = new CityCondition();
         $cityCriterion->setCity('Bordils');
+
+        $cityCriterion2 = new CityCondition();
+        $cityCriterion2->setCity('Girona');
 
         $dateCriterion = new DateCondition();
         $dateCriterion->setDate(new \DateTime('2023-12-2'));
@@ -49,17 +53,30 @@ class AppFixtures extends Fixture
         $manager->persist($user2);
 
 
-        $criteriaPack = new Contract();
-        $criteriaPack->setDays(3);
-        $criteriaPack->setOwner($user);
-//        $criterionGroup->addCriterion($maxTCriterion);
-//        $criterionGroup->addCriterion($minTCriterion);
-        $criteriaPack->addCondition($cityCriterion);
-//        $criterionGroup->addCriterion($dateCriterion);
-        //$criteriaPack->addCriterion($weekDayCriterion);
+        $contract = new Contract();
+        $contract->setDays(3);
+        $contract->setOwner($user);
+        $contract->addCondition($cityCriterion);
+        $manager->persist($contract);
 
-        $manager->persist($criteriaPack);
 
+        $contract2 = new Contract();
+        $contract2->setDays(3);
+        $contract2->setOwner($user2);
+        $contract2->addCondition($cityCriterion2);
+        $manager->persist($contract2);
+
+
+
+        $simple = new Simple();
+        $simple->setName('Joan');
+        $simple->setOwner($user);
+        $manager->persist($simple);
+
+        $simple2 = new Simple();
+        $simple2->setName('Joan');
+        $simple2->setOwner($user2);
+        $manager->persist($simple2);
 
         WeatherForecastFactory::createMany(
             15,
