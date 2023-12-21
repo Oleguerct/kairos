@@ -23,6 +23,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     'WeekDayCondition' => WeekDayCondition::class
 ])]
 #[ApiResource(
+    operations:[],
     normalizationContext: ['groups' => ['condition:read']],
     denormalizationContext: ['groups' => ['condition:write']],
 )]
