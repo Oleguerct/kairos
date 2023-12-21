@@ -11,6 +11,7 @@ use App\Entity\Condition\MaxTemperatureCondition;
 use App\Entity\Condition\MinTemperatureCondition;
 use App\Entity\Simple;
 use App\Entity\User;
+use App\Factory\UserFactory;
 use App\Factory\WeatherForecastFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -90,6 +91,7 @@ class AppFixtures extends Fixture
                     ];
             }
         );
+
 
 
 
