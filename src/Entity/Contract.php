@@ -45,7 +45,7 @@ class Contract
         inversedBy: 'contracts'
     )]
     #[ORM\JoinColumn(nullable: false)]
-//    #[Groups(['contract:read', 'contract:write'])]
+    #[Groups(['contract:read'])]
     private ?User $owner = null;
 
     public function __construct()
