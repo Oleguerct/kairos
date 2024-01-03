@@ -7,11 +7,7 @@ namespace App\Service;
 use App\Entity\Condition\CityCondition;
 use App\Entity\Condition\DateCondition;
 use App\Entity\Contract;
-use App\Entity\WeatherForecast;
-use App\Repository\WeatherForecastRepository;
-use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\QueryBuilder;
 
 class ForecastDownloadPlanner
 {
