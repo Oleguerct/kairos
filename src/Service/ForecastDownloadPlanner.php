@@ -8,6 +8,7 @@ use App\Entity\Condition\CityCondition;
 use App\Entity\Condition\DateCondition;
 use App\Entity\Contract;
 use Doctrine\ORM\EntityManagerInterface;
+use function Doctrine\ORM\QueryBuilder;
 
 class ForecastDownloadPlanner
 {
@@ -32,6 +33,7 @@ class ForecastDownloadPlanner
             ->leftJoin(DateCondition::class, 'dcnd', 'WITH', 'cnt.id = dcnd.contract')
             ->andWhere('dcnd.date > :today')
             ->orWhere($locationsQB->expr()->isNull('dcnd.date'))
+            ->andWhere($locationsQB->expr()->isNotNull('ccnd.city'))
             ->setParameter('today', $today)
         ;
 
