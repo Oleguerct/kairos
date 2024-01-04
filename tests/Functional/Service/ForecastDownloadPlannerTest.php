@@ -9,6 +9,7 @@ use App\Factory\Condition\DateConditionFactory;
 use App\Factory\ContractFactory;
 use App\Service\ForecastDownloadPlanner;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class ForecastDownloadPlannerTest extends KernelTestCase
@@ -108,6 +109,29 @@ class ForecastDownloadPlannerTest extends KernelTestCase
         $this->assertIsArray($result);
         $this->assertCount(1, $result);
         $this->assertSame('Barcelona', $result[0]['location']);
+    }
+
+    public function testGetLocationsDontReturnEmptyLocations(): void
+    {
+        $contract = $this->contractFactory->createOne();
+        $this->cityConditionFactory->createOne([
+            'contract' => $contract,
+            'city' => 'Girona'
+        ]);
+
+        $contract2 = $this->contractFactory->createOne();
+        $this->cityConditionFactory->createOne([
+            'contract' => $contract2,
+            'city' => 'Barcelona'
+        ]);
+
+        $this->contractFactory->createOne();
+
+        $result = $this->forecastDownloadPlanner->getLocations();
+
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+
     }
 
 }
