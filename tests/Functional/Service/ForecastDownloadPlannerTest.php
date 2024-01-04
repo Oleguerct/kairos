@@ -108,7 +108,7 @@ class ForecastDownloadPlannerTest extends KernelTestCase
 
         $this->assertIsArray($result);
         $this->assertCount(1, $result);
-        $this->assertSame('Barcelona', $result[0]['location']);
+        $this->assertSame('Barcelona', $result[0]);
     }
 
     public function testGetLocationsDontReturnEmptyLocations(): void

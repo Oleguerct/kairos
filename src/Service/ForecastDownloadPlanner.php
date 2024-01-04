@@ -37,7 +37,7 @@ class ForecastDownloadPlanner
             ->setParameter('today', $today)
         ;
 
-        return $locationsQB->getQuery()->getResult();
+        return $locationsQB->getQuery()->getSingleColumnResult();
 
     }
 
