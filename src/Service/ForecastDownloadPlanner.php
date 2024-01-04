@@ -7,17 +7,17 @@ namespace App\Service;
 use App\Entity\Condition\CityCondition;
 use App\Entity\Condition\DateCondition;
 use App\Entity\Contract;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ForecastDownloadPlanner
 {
 
     /**
      * ForecastDownloadPlanner constructor.
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      */
     public function __construct(
-        private EntityManager $entityManager
+        private EntityManagerInterface $entityManager
     ){}
 
     public function getLocations()
