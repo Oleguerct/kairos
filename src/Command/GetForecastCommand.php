@@ -2,6 +2,9 @@
 
 namespace App\Command;
 
+use App\Message\UpdateLocationForecastMessage;
+use App\Service\ForecastAPIConnection\ForecastAPIConnectionInterface;
+use App\Service\ForecastDownloadPlanner;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -9,6 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 #[AsCommand(
     name: 'app:get-forecast',
@@ -16,7 +20,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class GetForecastCommand extends Command
 {
-    public function __construct()
+    public function __construct(
+        private ForecastDownloadPlanner $downloadPlanner,
+        private ForecastAPIConnectionInterface $APIConnection,
+        private MessageBusInterface $bus
+    )
     {
         parent::__construct();
     }
@@ -31,11 +39,15 @@ class GetForecastCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        // TODO: Implement method
         $io = new SymfonyStyle($input, $output);
 
-        $io->success('Command works!');
+        foreach ($this->downloadPlanner->getLocations() as $location){
+            $this->bus->dispatch(new UpdateLocationForecastMessage($location));
+        }
 
+        $io->success('Done');
         return Command::SUCCESS;
     }
+
+
 }
