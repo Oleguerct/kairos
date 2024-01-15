@@ -8,7 +8,7 @@ Kairós s'ha creat per eliminar la necessitat de fer un seguiment periòdic i ma
 
 _____
 
-Kairós is an API designed to search for climatic windows of opportunity. It generates a contract with specific weather conditions, and Kairós will notify you when a contract aligns with its predictions, thereby creating an opportunity window.
+Kairós is an API designed to search for climatic windows of opportunity. Generate a contract with specific weather conditions, and Kairós will notify you when a contract aligns with its predictions, thereby creating an opportunity window.
 
 Kairós has been created to eliminate the need for periodic and manual monitoring of weather predictions in the search for opportunities to carry out specific activities.
 
