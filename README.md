@@ -1,15 +1,18 @@
-  _  __   _   ___ ___  ___  ___ 
-| |/ /  /_\ |_ _| _ \/ _ \/ __|
-| ' <  / _ \ | ||   / (_) \__ \
-|_|\_\/_/ \_\___|_|_\\___/|___/
+# KAIROS
 
-Kairós és una API per buscar finestres d'oportunitat climàtiques.
-Genera un contracte amb condicions climàtiques i Kairós et notificarà quan un contracte coincideixi amb les seves prediccions, creant així una finestra d'oportunitat.
+Kairós és una API per buscar finestres d'oportunitat climàtiques. Genera un contractes amb condicions meteorològiques específiques i Kairós us notificarà quan un contracte s'alineï amb les seves prediccions, creant així una finestra d'oportunitat.
 
-Kairós ha estat creat per evitar la necessitat de monitorar periòdicament i de manera manual les prediccions del temps en la recerca d'oportunitats que permetin dur a terme alguna activitat.
+Kairós s'ha creat per eliminar la necessitat de fer un seguiment periòdic i manual de les prediccions meteorològiques en la recerca d'oportunitats per dur a terme activitats concretes.
 
+### Aquest software està en construcció
 
+_____
 
+Kairós is an API designed to search for climatic windows of opportunity. It generates a contract with specific weather conditions, and Kairós will notify you when a contract aligns with its predictions, thereby creating an opportunity window.
+
+Kairós has been created to eliminate the need for periodic and manual monitoring of weather predictions in the search for opportunities to carry out specific activities.
+
+### This software is under construction
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
